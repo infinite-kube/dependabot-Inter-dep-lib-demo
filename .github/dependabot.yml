@@ -1,0 +1,35 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "08:00"
+    open-pull-requests-limit: 10
+
+    # Nice-to-have PR cosmetics
+    labels: ["dependabot", "dependencies"]
+    commit-message:
+      prefix: "chore"
+    rebase-strategy: "auto"
+
+    # Group related libraries so interdependent updates land together
+    groups:
+      babel-stack:
+        update-types: [minor, patch]
+        patterns:
+          - "@babel/*"
+      eslint-stack:
+        update-types: [minor, patch]
+        patterns:
+          - "eslint"
+          - "@eslint/*"
+          - "eslint-*"
+      all-minor-and-patch:
+        update-types: [minor, patch]
+        patterns:
+          - "*"
+      majors:
+        update-types: [major]
+        patterns:
+          - "*"
