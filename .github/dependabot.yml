@@ -12,46 +12,41 @@ updates:
     rebase-strategy: "auto"
 
     groups:
-      babel-stack:
-        update-types: [minor, patch]
-        patterns:
-          - "@babel/*"
-      eslint-stack:
-        update-types: [minor, patch]
-        patterns:
-          - "eslint"
-          - "@eslint/*"
-          - "eslint-*"
-      all-minor-and-patch:
-        update-types: [minor, patch]
-        patterns:
-          - "*"
-      majors:
+      # Group major updates for core toolchain to prevent ERESOLVE conflicts.
+      # These updates are typically non-trivial and should be reviewed together.
+      major-toolchain-updates:
         update-types: [major]
         patterns:
-          - "*"
-      minor-and-patch:
-        update-types: [minor, patch]
-        patterns: ["*"]
-      eslint-stack-majors:
-        update-types: [major]
-        patterns:
+          - "jest"
           - "eslint"
           - "@eslint/*"
           - "eslint-*"
           - "@typescript-eslint/*"
-      babel-stack-majors:
-        update-types: [major]
-        patterns:
           - "@babel/*"
-          - "babel-loader"
-      webpack-stack-majors:
-        update-types: [major]
+          - "babel-*"
+          - "webpack*"
+          - "css-loader"
+          - "style-loader"
+          - "file-loader"
+          - "url-loader"
+      
+      # Group minor and patch updates for all dependencies.
+      # These are generally safe and can be automated to reduce noise.
+      minor-and-patch-updates:
+        update-types: [minor, patch]
         patterns:
-          - "webpack"
-          - "webpack-cli"
-          - "webpack-dev-server"
-          - "babel-loader"
+          - "*"
+        exclude-patterns:
+          # Exclude the major toolchain packages to prevent conflicts
+          # and ensure they are handled by the separate group above.
+          - "jest"
+          - "eslint"
+          - "@eslint/*"
+          - "eslint-*"
+          - "@typescript-eslint/*"
+          - "@babel/*"
+          - "babel-*"
+          - "webpack*"
           - "css-loader"
           - "style-loader"
           - "file-loader"
