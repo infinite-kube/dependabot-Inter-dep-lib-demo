@@ -6,14 +6,11 @@ updates:
       interval: "daily"
       time: "08:00"
     open-pull-requests-limit: 10
-
-    # Nice-to-have PR cosmetics
     labels: ["dependabot", "dependencies"]
     commit-message:
       prefix: "chore"
     rebase-strategy: "auto"
 
-    # Group related libraries so interdependent updates land together
     groups:
       babel-stack:
         update-types: [minor, patch]
@@ -33,3 +30,29 @@ updates:
         update-types: [major]
         patterns:
           - "*"
+      minor-and-patch:
+        update-types: [minor, patch]
+        patterns: ["*"]
+      eslint-stack-majors:
+        update-types: [major]
+        patterns:
+          - "eslint"
+          - "@eslint/*"
+          - "eslint-*"
+          - "@typescript-eslint/*"
+      babel-stack-majors:
+        update-types: [major]
+        patterns:
+          - "@babel/*"
+          - "babel-loader"
+      webpack-stack-majors:
+        update-types: [major]
+        patterns:
+          - "webpack"
+          - "webpack-cli"
+          - "webpack-dev-server"
+          - "babel-loader"
+          - "css-loader"
+          - "style-loader"
+          - "file-loader"
+          - "url-loader"
