@@ -17,14 +17,16 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      # Label majors for manual attention
-      - name: Label majors as needs-manual
+      # Label majors for manual attention. This step is crucial for Scenario 3
+      # as it "gates" breaking changes, preventing auto-merges for high-risk updates.
+      - name: Label majors as needs-manual-review
         if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-major' }}
         run: gh pr edit ${{ github.event.pull_request.number }} --add-label "needs-manual-review"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Enable auto-merge only for minor/patch
+      # Enable auto-merge for minor/patch. This step automates low-risk updates,
+      # reducing manual overhead and PR noise, a key advantage of the solution.
       - name: Enable auto-merge for minor/patch
         if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
         uses: peter-evans/enable-pull-request-automerge@v3
