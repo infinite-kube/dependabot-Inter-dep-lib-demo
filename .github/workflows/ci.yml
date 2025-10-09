@@ -27,3 +27,15 @@ jobs:
         with:
           name: npm-audit
           path: audit.json
+
+  node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20" # ESLint 9 needs modern Node if/when it lands
+      - name: Install (will fail on peer conflicts)
+        run: npm ci
+      - name: Smoke tests
+        run: npm test --if-present
