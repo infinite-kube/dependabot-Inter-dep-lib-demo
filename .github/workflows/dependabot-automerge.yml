@@ -27,6 +27,7 @@ jobs:
 
       # Enable auto-merge for minor/patch. This step automates low-risk updates,
       # reducing manual overhead and PR noise, a key advantage of the solution.
+      # improve automerge rules.
       - name: Enable auto-merge for minor/patch
         if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
         uses: peter-evans/enable-pull-request-automerge@v3
