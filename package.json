@@ -13,7 +13,7 @@
     "@babel/plugin-transform-runtime": "7.13.0",
     "@babel/runtime": "7.13.0",
     "lodash": "4.17.19",
-    "express": "4.17.1"
+    "express": "5.1.0"
   },
   "devDependencies": {
     "jest": "^29.7.0",
