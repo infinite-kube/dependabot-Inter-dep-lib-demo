@@ -12,7 +12,7 @@
     "@babel/preset-env": "7.13.0",
     "@babel/plugin-transform-runtime": "7.13.0",
     "@babel/runtime": "7.13.0",
-    "lodash": "4.17.19",
+    "lodash": "4.17.21",
     "express": "4.17.1"
   },
   "devDependencies": {
