@@ -11,7 +11,7 @@
     "@babel/core": "7.13.0",
     "@babel/preset-env": "7.13.0",
     "@babel/plugin-transform-runtime": "7.13.0",
-    "@babel/runtime": "7.13.0",
+    "@babel/runtime": "7.28.4",
     "lodash": "4.17.19",
     "express": "4.17.1"
   },
